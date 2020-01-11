@@ -1,4 +1,4 @@
-# Distributed Project
+# File Sharing Peer to Peer Disributed System
 
 
 ## 1. Goals
