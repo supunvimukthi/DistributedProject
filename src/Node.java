@@ -21,7 +21,10 @@ public class Node extends Thread {
     List<String> fileList = new ArrayList<>(); // files assigned to this node
     private int nodesLeft = 0; // remaining #no of connected peer nodes
 
-    /* TODO : handle node disconnections from the network, partition tolerance */
+    /* TODO : handle node disconnections from the network, partition tolerance
+     * TODO : create UI for node initialization and file sharing
+     * TODO : create REST API for downloading file
+     * */
 
     public Node(String ip, int port, String username) {
         this.username = username;
