@@ -1,3 +1,6 @@
+/*
+* model of nodes which are saved in the Bootstrap Server
+* */
 public class Neighbour{
     private String ip;
     private int port;

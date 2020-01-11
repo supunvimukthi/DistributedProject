@@ -32,7 +32,7 @@ public class BootstrapServer extends Thread {
 
                 byte[] data = incoming.getData();
                 s = new String(data, 0, incoming.getLength());
-                System.out.println(s);
+
                 //echo the details of incoming data - client ip : client port - client message
                 echo(incoming.getAddress().getHostAddress() + " : " + incoming.getPort() + " - " + s);
 
@@ -40,7 +40,6 @@ public class BootstrapServer extends Thread {
 
                 String length = st.nextToken();
                 String command = st.nextToken();
-//                String reply = "REGOK ";
                 if (command.equals("REG")) {
                     String reply = "REGOK ";
 
@@ -86,6 +85,7 @@ public class BootstrapServer extends Thread {
                     reply = String.format("%04d", reply.length() + 5) + " " + reply;
                     DatagramPacket dpReply = new DatagramPacket(reply.getBytes(), reply.getBytes().length, incoming.getAddress(), incoming.getPort());
                     sock.send(dpReply);
+
                 } else if (command.equals("UNREG")) {
                     String ip = st.nextToken();
                     int port = Integer.parseInt(st.nextToken());
@@ -106,17 +106,13 @@ public class BootstrapServer extends Thread {
                     DatagramPacket dpReply = new DatagramPacket(reply.getBytes(), reply.getBytes().length, incoming.getAddress(), incoming.getPort());
                     sock.send(dpReply);
                 }
-//                reply = String.format("%04d", reply.length() + 5) + " " + reply;
-//
-//                DatagramPacket dpReply = new DatagramPacket(reply.getBytes(), reply.getBytes().length, incoming.getAddress(), incoming.getPort());
-//                sock.send(dpReply);
             }
         } catch (IOException e) {
             System.err.println("IOException " + e);
         }
     }
 
-    //simple function to echo data to terminal
+    // simple function to echo data to terminal
     public static void echo(String msg) {
         System.out.println(msg);
     }
