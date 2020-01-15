@@ -52,7 +52,7 @@ public class BootstrapServer extends Thread {
                     } else {
                         boolean isOkay = true;
                         for (int i = 0; i < nodes.size(); i++) {
-                            if (nodes.get(i).getPort() == port) {
+                            if (nodes.get(i).getPort() == port && nodes.get(i).getIp()== ip) {
                                 if (nodes.get(i).getUsername().equals(username)) {
                                     reply += "9998";
                                 } else {
@@ -105,6 +105,10 @@ public class BootstrapServer extends Thread {
                     String reply = "0012 ECHOK 0";
                     DatagramPacket dpReply = new DatagramPacket(reply.getBytes(), reply.getBytes().length, incoming.getAddress(), incoming.getPort());
                     sock.send(dpReply);
+                }else{
+                    String reply ="0010 ERROR";
+                    DatagramPacket dpReply = new DatagramPacket(reply.getBytes(), reply.getBytes().length, incoming.getAddress(), incoming.getPort());
+                    sock.send(dpReply);
                 }
             }
         } catch (IOException e) {
@@ -116,6 +120,7 @@ public class BootstrapServer extends Thread {
     public static void echo(String msg) {
         System.out.println(msg);
     }
+
     public static void  main(String args[]) throws IOException {
         new BootstrapServer().start();}
 }
