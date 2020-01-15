@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.example.P2P_FileSharing_System.test
-
